@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import corsOptions from "./config/corsOptions";
 import { envs } from "./config/EnvConfig";
+import connectToDb from "./config/connectToDb";
 
 const server = express();
 
@@ -13,9 +14,15 @@ server.use(cors(corsOptions));
 // #endregion : middleware
 
 const startServer = async () => {
-  server.listen(envs.PORT, () => {
-    console.log(`server started listening at PORT ${envs.PORT}`);
-  });
+  try {
+    // connecting to DB
+    await connectToDb();
+    server.listen(envs.PORT, () => {
+      console.log(`server started listening at PORT ${envs.PORT}`);
+    });
+  } catch (err) {
+    console.log(`server failed to start.`);
+  }
 };
 
 startServer();
