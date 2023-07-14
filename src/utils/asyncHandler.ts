@@ -2,8 +2,8 @@ import express, { NextFunction } from "express";
 import core from "express-serve-static-core";
 
 export const asyncHandler =
-  (cb: (req: Request, res: Response, next: NextFunction) => Promise<void>) =>
-  async (...args: [Request, Response, NextFunction]) => {
+  (cb: any) =>
+  async (...args: any[]) => {
     const next = args[args.length - 1] as NextFunction;
     try {
       await cb(...args);

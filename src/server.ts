@@ -1,4 +1,5 @@
-import express from "express";
+import { IWDCompanySchema } from "./types/models/company.model.d";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import corsOptions from "./config/corsOptions";
 import { envs } from "./config/EnvConfig";
@@ -13,6 +14,12 @@ server.use(cors(corsOptions));
 
 // #endregion : middleware
 
+// #region : routes
+
+// #endregion : routes
+
+// #region : initiate server
+
 const startServer = async () => {
   try {
     // connecting to DB
@@ -26,3 +33,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+// #endregion : initiate server
