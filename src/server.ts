@@ -4,7 +4,7 @@ import cors from "cors";
 import corsOptions from "./config/corsOptions";
 import { envs } from "./config/EnvConfig";
 import connectToDb from "./config/connectToDb";
-import { customErrorHandler } from "./controllers/customErrorHandler";
+import { customErrorHandler } from "./middleware/customErrorHandler";
 import { customError } from "./utils/customError";
 
 const server = express();
