@@ -4,19 +4,27 @@ import cors from "cors";
 import corsOptions from "./config/corsOptions";
 import { envs } from "./config/EnvConfig";
 import connectToDb from "./config/connectToDb";
+import { customErrorHandler } from "./controllers/customErrorHandler";
+import { customError } from "./utils/customError";
 
 const server = express();
 
-// #region : middleware
+// #region : initial-mw
 
 server.use(express.json());
 server.use(cors(corsOptions));
 
-// #endregion : middleware
+// #endregion : initial-mw
 
 // #region : routes
-
+server.get("/", (req: Request, res: Response) => {
+  throw new customError(500, "get / failed: test error");
+});
 // #endregion : routes
+
+// #region : end-mw
+server.use(customErrorHandler);
+// #endregion : end-mw
 
 // #region : initiate server
 
