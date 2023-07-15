@@ -6,12 +6,14 @@ import { envs } from "./config/EnvConfig";
 import connectToDb from "./config/connectToDb";
 import { customErrorHandler } from "./middleware/customErrorHandler";
 import { customError } from "./utils/customError";
+import { customLogger } from "./middleware/customLogger";
 
 const server = express();
 
 // #region : initial-mw
 
 server.use(express.json());
+server.use(customLogger);
 server.use(cors(corsOptions));
 
 // #endregion : initial-mw
