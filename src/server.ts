@@ -1,12 +1,11 @@
-import { IWDCompanySchema } from "./types/models/company.model.d";
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import corsOptions from "./config/corsOptions";
 import { envs } from "./config/EnvConfig";
 import connectToDb from "./config/connectToDb";
 import { customErrorHandler } from "./middleware/customErrorHandler";
-import { customError } from "./utils/customError";
 import { customLogger } from "./middleware/customLogger";
+import companyRouter from "./routers/company.router";
 
 const server = express();
 
@@ -19,9 +18,7 @@ server.use(cors(corsOptions));
 // #endregion : initial-mw
 
 // #region : routes
-server.get("/", (req: Request, res: Response) => {
-  throw new customError(500, "get / failed: test error");
-});
+server.use("/api/companies", companyRouter);
 // #endregion : routes
 
 // #region : end-mw

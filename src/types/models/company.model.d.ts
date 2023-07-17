@@ -2,6 +2,8 @@ export enum ECompanyTypes {
   IT = "IT",
   Marketing = "Marketing",
   Analytics = "Analytics",
+  Mechanical = "Mechanical",
+  Medical = "Medical",
 }
 
 export interface ICompanySchema {
@@ -19,6 +21,6 @@ export interface IWDCompanySchema extends Partial<ICompanySchema> {
   type: ECompanyTypes;
 }
 
-export interface ICompanyLean extends ICompanySchema {
+export interface ICompanyLeanDoc extends ICompanySchema {
   _id: string;
 }

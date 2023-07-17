@@ -53,4 +53,4 @@ export const companyModel = mongoose.model("company", companySchema);
 
 type Tcompany = typeof companyModel;
 
-interface ICompany extends Tcompany {}
+interface ICompanyDoc extends Tcompany {}

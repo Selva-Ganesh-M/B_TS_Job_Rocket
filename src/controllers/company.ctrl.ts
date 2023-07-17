@@ -5,6 +5,19 @@ import { companyModel } from "../models/company.model";
 
 const createCompany = asyncHandler(
   async (req: Request<{}, {}, IWDCompanySchema, {}>, res: Response) => {
-    const created = new companyModel(req.body);
+    const tempCompany = new companyModel(req.body);
+    const company = await tempCompany.save();
+    res.status(201).json({
+      statusText: "success",
+      statusCode: 201,
+      message: "new company created",
+      payload: company,
+    });
   }
 );
+
+const companyCtrl = {
+  createCompany,
+};
+
+export default companyCtrl;
